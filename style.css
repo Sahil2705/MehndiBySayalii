@@ -1,0 +1,204 @@
+     /* Base styles for the page */
+     /* body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+        font-family: cursive;
+    } */
+
+    svg {
+        width: 80%;
+        max-width: 800px;
+        height: auto;
+    }
+
+    /* Animation for the text */
+    .animated-text {
+        font-size: 80px;
+        font-family: cursive;
+        fill: transparent;
+        stroke: #381f0e;
+        stroke-width: 2;
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: drawText 12s ease forwards;
+    }
+
+    @keyframes drawText {
+        0% {
+            stroke-dashoffset: 1000;
+        }
+        100% {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    
+
+ 
+
+
+body{
+background-color: rgb(249, 236, 222);
+}
+footer,nav{
+    background-color: rgb(37, 27, 27)
+}
+
+section,footer,nav,H2,h3{
+    font-family: librebasker vile;
+}
+
+
+
+
+/* Flip Card Container */
+.card-container {
+    display: flex;
+    flex-wrap: nowrap; /* Ensure cards remain horizontal */
+    gap: 10px;
+    justify-content: center; /* Center align for larger screens */
+    padding: 20px;
+    overflow-x: auto; /* Enable horizontal scrolling on small screens */
+    white-space: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff transparent;
+}
+
+/* Custom Scrollbar */
+.card-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.card-container::-webkit-scrollbar-thumb {
+    background: #929191;
+    border-radius: 4px;
+}
+
+.card-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Individual Card */
+.card {
+    width: 200px;
+    height: 300px;
+    perspective: 1000px;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+}
+
+/* Inner Card */
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+/* Flip the card on hover */
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Card Front & Back */
+.card-front, .card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-front {
+    background: #fff;
+}
+
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-back {
+    background: #ffffff;
+    color: #fff;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Button Styling */
+.card-back button {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.card-back button:hover {
+    background-color: #cc5500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card-container {
+        justify-content: flex-start; /* Mobile वर left align */
+        overflow-x: auto; /* Ensure horizontal scroll */
+        flex-wrap: nowrap;
+        gap: 15px;
+        scroll-snap-type: x mandatory;
+    }
+
+    .card {
+        width: 180px;
+        height: 270px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-container {
+        padding: 10px;
+    }
+
+    .card {
+        width: 150px;
+        height: 250px;
+    }
+
+    .card-back button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+
+.custombg{
+    background-color: 	rgb(208 197 146 / 90%);
+      border-radius: 10px; /* Adjust the value as needed */
+    overflow: hidden; /* Ensures smooth rounded corners */
+}
+
+
+form{
+    background-color: 	rgb(208 197 146 / 90%);
+}
+#button{
+    background-color: #744444;
+}

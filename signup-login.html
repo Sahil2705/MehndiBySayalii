@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    <style>
+            body{
+            background-color: rgb(249, 236, 222);
+        }
+        #form{
+            background-color: 	rgb(208 197 146 / 90%);
+
+        }
+    </style>
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+</header>
+<body class="flex items-center justify-center h-screen ">
+   
+    
+    <div id="form" class="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold text-center mb-4" id="form-title">Sign In</h2>
+        
+        <div id="error-message" class="text-red-500 text-sm text-center mb-2"></div>
+        
+        <input type="email" id="email" class="w-full px-4 py-2 mb-2 border rounded-lg" placeholder="Email">
+        <input type="password" id="password" class="w-full px-4 py-2 mb-2 border rounded-lg" placeholder="Password">
+        
+        <button id="auth-btn" class="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-red-600">Sign In</button>
+        
+        <p class="text-center text-sm mt-2">
+            <span id="toggle-text">Don't have an account?</span>
+            <button id="toggle-btn" class="text-red-500">Sign Up</button>
+        </p>
+    </div>
+    <script type="module">
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC21tRZ2fy2raG1cjQ3D6i7vZAcpL6RT9k",
+            authDomain: "fir-80e70.firebaseapp.com",
+            databaseURL: "https://fir-80e70-default-rtdb.firebaseio.com",
+            projectId: "fir-80e70",
+            storageBucket: "fir-80e70.firebasestorage.app",
+            messagingSenderId: "1023274199792",
+            appId: "1:1023274199792:web:6032dbe712561365917035",
+            measurementId: "G-DHYFH71W2E"
+        };
+    
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+    
+        let isSignUp = false;
+        document.getElementById('toggle-btn').addEventListener('click', () => {
+            isSignUp = !isSignUp;
+            document.getElementById('form-title').textContent = isSignUp ? 'Sign Up' : 'Sign In';
+            document.getElementById('auth-btn').textContent = isSignUp ? 'Sign Up' : 'Sign In';
+            document.getElementById('toggle-text').textContent = isSignUp ? 'Already have an account?' : "Don't have an account?";
+            document.getElementById('toggle-btn').textContent = isSignUp ? 'Sign In' : 'Sign Up';
+        });
+    
+        document.getElementById('auth-btn').addEventListener('click', async () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-message');
+            errorMsg.textContent = "";
+    
+            if (!email || !password) {
+                errorMsg.textContent = "⚠️ Please enter both email and password.";
+                return;
+            }
+    
+            try {
+                if (isSignUp) {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                    alert('✅ Account created successfully!');
+                } else {
+                    await signInWithEmailAndPassword(auth, email, password);
+                    alert('✅ Signed in successfully!');
+                }
+    
+                // ✅ Redirect after authentication
+                window.location.href = "index.html"; // Change this to your home/dashboard page
+    
+            } catch (error) {
+                let message = "❌ An error occurred!";
+                switch (error.code) {
+                    case 'auth/invalid-email':
+                        message = "⚠️ Invalid email format!";
+                        break;
+                    case 'auth/email-already-in-use':
+                        message = "⚠️ Email is already in use!";
+                        break;
+                    case 'auth/user-not-found':
+                        message = "⚠️ No account found with this email!";
+                        break;
+                    case 'auth/wrong-password':
+                        message = "⚠️ Incorrect password!";
+                        break;
+                    case 'auth/weak-password':
+                        message = "⚠️ Password should be at least 6 characters!";
+                        break;
+                    case 'auth/network-request-failed':
+                        message = "⚠️ Network error! Check your internet connection.";
+                        break;
+                    default:
+                        message = "⚠️ " + error.message;
+                }
+                errorMsg.textContent = message;
+            }
+        });
+    </script>
+    
+</body>
+</html>

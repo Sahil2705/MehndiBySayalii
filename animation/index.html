@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehndi by Sayali Animation</title>
+    <style>
+        /* Base styles for the page */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: cursive;
+        }
+
+        svg {
+            width: 80%;
+            max-width: 800px;
+            height: auto;
+        }
+
+        /* Animation for the text */
+        .animated-text {
+            font-size: 80px;
+            font-family: cursive;
+            fill: transparent;
+            stroke: #8B4513;
+            stroke-width: 2;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawText 12s ease forwards;
+        }
+
+        @keyframes drawText {
+            0% {
+                stroke-dashoffset: 1000;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+        <text x="50" y="150" class="animated-text">
+            Mehndi by Sayali
+        </text>
+    </svg>
+</body>
+</html>

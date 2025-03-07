@@ -1,0 +1,34 @@
+/* styles.css */
+@keyframes fillColor {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.animated-text {
+    font-size: 80px;
+    font-family: cursive;
+    stroke: #8B4513;
+    stroke-width: 2;
+    fill: transparent;
+    background: linear-gradient(to left, #ff7f50, #ff6347, #f0e68c, #98fb98);
+    background-clip: text;
+    -webkit-background-clip: text;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.animated-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    animation: fillColor 3s ease-in-out forwards;
+}
