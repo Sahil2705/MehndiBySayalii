@@ -9,28 +9,36 @@
         body{
             background-color: rgb(249, 236, 222);
         }
+        img{
+            border-radius: 2%;
+        }
+    
     </style>
 </head>
 <body >
-    <div class="max-w-6xl mx-auto p-4">
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
-            <!-- Image Item -->
-            <div class="relative group">
-                <img src="asstes/Baby shower/baby-shower (1).jpg" alt="Image" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-            </div>
+    <div class="grid grid-cols-3 gap-3 max-w-4xl mx-auto">
+        <img src="asstes/Baby shower/baby-shower (1).jpg" class="w-full h-full object-cover cursor-pointer" onclick="openModal(this.src)">
+        <img src="asstes/Baby shower/baby-shower (2).jpg" class="w-full h-full object-cover cursor-pointer" onclick="openModal(this.src)">
+        <img src="asstes/Baby shower/baby-shower (3).jpg" class="w-full h-full object-cover cursor-pointer" onclick="openModal(this.src)">
 
-            <div class="relative group">
-                <img src="asstes/Baby shower/baby-shower (2).jpg" alt="Image" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-            </div>
-            <div class="relative group">
-                <img src="asstes/Baby shower/baby-shower (3).jpg" alt="Image" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-            </div>
-
-           
-            
     </div>
+
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden">
+        <img id="modal-img" class="max-w-full max-h-full object-contain">
+        <button class="absolute top-5 right-5 text-white text-2xl " onclick="closeModal()">&times;</button>
+    </div>
+
+    <script>
+        function openModal(src) {
+            document.getElementById('modal-img').src = src;
+            document.getElementById('modal').classList.remove('hidden');
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+    </script>
+
+   
 </body>
 </html>
